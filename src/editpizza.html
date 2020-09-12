@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <title>Add New Pizza</title>
+  </head>
+  <body class="bg-light">
+    <header>
+      <div id="navbar" class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <div class="navbar-brand d-inline align-items-center">
+            <a style="color:white" href="home-admin.php"><i class="fas fa-chart-pie"></i></a>
+          </div>
+          <div class="inline">
+            <a href="home.html" class="navbar-brand d-inline align-items-center text-right">
+              <i class="fas fa-sign-out-alt"></i>
+              <strong>Sign Out</strong>
+            </a>
+            </div>
+          </div>
+        </div>
+    </header>
+    <main role="main">
+      <section class="jumbotron text-center" style="background-color: white">
+        <div class="container">
+          <h1 class="jumbotron-heading">Add New Pizza</h1>
+          <p class="lead text-muted">You can add new pizza here.</p>
+        </div>
+      </section>
+      <div class="container" style="margin-bottom: 40px">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <form action="add_pizza.php" method='post' id="new_pizza" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="pizza_name">Pizza Name</label>
+                <input type="text" class="form-control" name="pizza_name" id="pizzaName" placeholder="Pizza Name" required>
+                <label class="label-danger" for="pizza_name">*Make sure image is stored in format pizzaname.jpg</label>
+              </div>
+              <div class="mb-3">
+                <label for="base_price">Base Price</label>
+                <input type="text" class="form-control" name="base_price" id="base_price" placeholder="Base Price" required>
+              </div>
+               <div class="mb-3">
+                <label for="description">Pizza Description</label>
+                <textarea type="text" class="form-control" name="pizzaDescription" id="pizzaDescription" placeholder="Pizza Description" rows="5" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="inventory">Inventory</label>
+                <input type="text" class="form-control" name="inventory" id="inventory" placeholder="inventory" required>
+              </div>
+              <div class="mb-3">
+                <label for="category">Category</label>
+                <select required class="custom-select" name="category" id="category" style="margin-right: 1%">';
+                    <option value="" disabled selected>Category...</option>';
+                    <option value="meat">Meat</option>
+                    <option value="veggie">Veggie</option>
+                    </select>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-lg btn-block" type="submit">Update</button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-secondary btn-lg btn-block btn-danger" type="reset">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <script>
+			$(function() {
+				$('#new_pizza').submit(function(e) {
+					var pizza = $('#pizzaName').val();
+					var price = $('#base_price').val();
+					var description = $('#pizzaDescription').val();
+					var inventory = $('#inventory').val();
+                    var category= $('#category').val;	
+					if (pizza=='' || price=='' || description=='' || inventory=='' ||category=='') {
+						alert('Please enter all fileds!');
+						e.preventDefault();
+					}
+                    else if(!price.match(/^[0-9]+\056[0-9][0-9]$/)){
+                        alert('Please enter a price in the form XX.XX!');
+						e.preventDefault();
+                    }
+                    else if(/^[1-9][0-9]*$/){
+                        alert('Please enter an inventory number greater than or equal to 0!');
+						e.preventDefault();        
+                    }
+                });
+            });
+      </script>
+  </body>
+</html>
